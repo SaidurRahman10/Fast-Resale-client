@@ -1,0 +1,139 @@
+[
+    {
+        
+        "name":"Nissan",
+         "brand":"https://bhalogari-static.s3.amazonaws.com/media/nissan_new.svg",
+         "allcar":[
+            {
+                "id":1,
+                "name": "Nissan X-Trail 2014" ,
+                "img": "https://bhalogari-static.s3.amazonaws.com/media/X_Trail_1644137356_7708335.webp" ,
+                "location": "Feni Sadar, Feni" ,
+                "price": 5150000,
+                "resalePrice": 3150000 , 
+                "modelYear":2017,
+                "usedTime":5,
+                "category":"Used",
+                "mileage": 54000
+
+                 
+            },
+            {
+                "id":2,
+                "name": "Nissan X-Trail 4.5/EBP-NISMO" ,
+                "img": "https://bhalogari-static.s3.amazonaws.com/media/X_Trail_1644920407_4925716.webp" ,
+                "location": "Feni Sadar, Feni" ,
+                "price": 5550000,
+                "resalePrice": 4850000 , 
+                "modelYear":2018,
+                "usedTime":3,
+                "category":"Recondition",
+                "mileage": 30000
+
+                 
+            },
+            {
+                "id":3,
+                "name": "Nissan X-Trail 5" ,
+                "img": "https://bhalogari-static.s3.amazonaws.com/media/X_Trail_1644055353_4256077.webp" ,
+                "location": "Feni Sadar, Feni" ,
+                "price": 5550000,
+                "resalePrice": 4850000 , 
+                "modelYear":2018,
+                "usedTime":3,
+                "category":"Recondition",
+                "mileage": 40500
+
+                 
+            }
+         ]
+    },
+    {
+       
+        "name":"Toyota",
+        "brand":"https://bhalogari-static.s3.amazonaws.com/media/toyota_new.svg",
+         "allcar":[
+            {
+                "id":1,
+                "name": "Harrier TOYOTA HARRIER 2017 PEARL PREMIUM 2017" ,
+                "img": "https://bhalogari-static.s3.amazonaws.com/media/Harrier_1647086676_1713912.webp" ,
+                "location": "Feni Sadar, Feni" ,
+                "price": 770000,
+                "resalePrice": 5650000 , 
+                "modelYear":2017,
+                "usedTime":4,
+                "category":"Recondition",
+                "mileage": 37000
+            },
+            {
+                "id":2,
+                "name": "Toyota Prius PHV 2018" ,
+                "img": "https://api.valogari.com/api/upload/images/img-20221122-wa0073-ab00.jpg" ,
+                "location": "Feni Sadar, Feni" ,
+                "price": 870000,
+                "resalePrice": 3450000 , 
+                "modelYear":2018,
+                "usedTime":3,
+                "category":"Used",
+                "mileage": 74000
+            },
+            {
+                "id":3,
+                "name": "Toyota Fielder 2017" ,
+                "img": "https://api.valogari.com/api/upload/images/img-20221122-wa0049-57f1.jpg" ,
+                "location": "Feni Sadar, Feni" ,
+                "price": 370000,
+                "resalePrice": 2050000 , 
+                "modelYear":2017,
+                "usedTime":4,
+                "category":"Recondition",
+                "mileage": 51000
+            }
+
+         ]
+    },
+   {
+
+    "name":"BMW",
+    "brand":"https://bhalogari-static.s3.amazonaws.com/media/bmw_new.svg",
+     "allcar":[
+        {
+            "id":1,
+                "name": "BMW X3 SPackage 2011" ,
+                "img": "https://bhalogari-static.s3.amazonaws.com/media/X3_1638090899_1659365.jpg" ,
+                "location": "Feni Sadar, Feni" ,
+                "price": 695000,
+                "resalePrice": 4350000 , 
+                "modelYear":2011,
+                "usedTime":10,
+                "category":"Used",
+                "mileage": 52000
+        },
+        {
+            "id":2,
+                "name": "BMW 5 Series GPKG 2016" ,
+                "img": "https://bhalogari-static.s3.amazonaws.com/media/5_Series_1643609851_089828.webp" ,
+                "location": "Feni Sadar, Feni" ,
+                "price": 10695000,
+                "resalePrice": 8350000 , 
+                "modelYear":2016,
+                "usedTime":4,
+                "category":"Recondition",
+                "mileage": 30000
+        },
+        {
+            "id":3,
+                "name": "BMW 5 Series 2005" ,
+                "img": "https://bhalogari-static.s3.amazonaws.com/media/5_Series_1644298344_5293128.webp" ,
+                "location": "Feni Sadar, Feni" ,
+                "price": 555000,
+                "resalePrice": 2350000 , 
+                "modelYear":2005,
+                "usedTime":15,
+                "category":"Used",
+                "mileage": 25000
+        }
+        
+     ]
+   }
+]

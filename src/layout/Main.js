@@ -32,7 +32,7 @@ const Main = () => {
             <MapPinIcon className="h-12 w-12 text-red-500" />
             <div>
               <h1 className="text-red-400 text-lg">Our Location</h1>
-              <h3 className="text-lg text-black">25/7 Barden, London</h3>
+              <h3 className="text-lg text-black">25/7 Feni, Feni sodor</h3>
             </div>
           </div>
           <div className="flex gap-3">
@@ -40,7 +40,7 @@ const Main = () => {
 
             <div>
               <h1 className="text-red-400 text-lg">Online Support</h1>
-              <h3 className="text-lg text-black">info@rana.com</h3>
+              <h3 className="text-lg text-black">info@frs.com</h3>
             </div>
           </div>
           
