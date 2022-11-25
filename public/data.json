@@ -3,6 +3,7 @@
         
         "name":"Nissan",
          "brand":"https://bhalogari-static.s3.amazonaws.com/media/nissan_new.svg",
+         "currentDate":9,
          "allcar":[
             {
                 "id":1,
@@ -14,7 +15,11 @@
                 "modelYear":2017,
                 "usedTime":5,
                 "category":"Used",
-                "mileage": 54000
+                "mileage": 54000,
+                "type":"Good",
+                "mobile":"+8801897652536",
+                "description":"This car is very good and it is very well used and this car is driven in very good roads and the roads are very nice and very unique so I can say that this card will be very good if you Buy",
+                "post": "Fri Nov 25 2022 12:14:04 GMT+0600 (Bangladesh Standard Time)"
 
                  
             },
@@ -28,7 +33,11 @@
                 "modelYear":2018,
                 "usedTime":3,
                 "category":"Recondition",
-                "mileage": 30000
+                "mileage": 30000,
+                "type":"Excellent",
+                "mobile":"+8801658878",
+                "description":"This car has been meticulously sourced and very nicely reconditioned from its showroom perfectly with various finishes throughout the song and then sport driven.",
+                "post": "Fri Nov 25 2022 12:14:04 GMT+0600 (Bangladesh Standard Time)"
 
                  
             },
@@ -42,7 +51,11 @@
                 "modelYear":2018,
                 "usedTime":3,
                 "category":"Recondition",
-                "mileage": 40500
+                "mileage": 40500,
+                "type":"Good",
+                "mobile":"+88017815666",
+                "description":"The owner of this car bought this song as a hobby and drives it as a hobby and it is very nice and Unique.New model things are added in this song and the speed of this car is very great Iran can move very fast per second.",
+                "post": "Fri Nov 25 2022 12:14:04 GMT+0600 (Bangladesh Standard Time)"
 
                  
             }
@@ -52,6 +65,7 @@
        
         "name":"Toyota",
         "brand":"https://bhalogari-static.s3.amazonaws.com/media/toyota_new.svg",
+        "currentDate":9,
          "allcar":[
             {
                 "id":1,
@@ -63,7 +77,11 @@
                 "modelYear":2017,
                 "usedTime":4,
                 "category":"Recondition",
-                "mileage": 37000
+                "mileage": 37000,
+                "type":"fair",
+                "mobile":"+8801897652536",
+                "description":"The owner of this car bought this song as a hobby and drives it as a hobby and it is very nice and Unique.New model things are added in this song and the speed of this car is very great Iran can move very fast per second.",
+                "post": "Fri Nov 25 2022 12:14:04 GMT+0600 (Bangladesh Standard Time)"
             },
             {
                 "id":2,
@@ -75,7 +93,11 @@
                 "modelYear":2018,
                 "usedTime":3,
                 "category":"Used",
-                "mileage": 74000
+                "mileage": 74000,
+                "type":"fair",
+                "mobile":"+8801897652",
+                "description":"This car has been meticulously sourced and very nicely reconditioned from its showroom perfectly with various finishes throughout the song and then sport driven.",
+                "post": "Fri Nov 25 2022 12:14:04 GMT+0600 (Bangladesh Standard Time)"
             },
             {
                 "id":3,
@@ -87,7 +109,11 @@
                 "modelYear":2017,
                 "usedTime":4,
                 "category":"Recondition",
-                "mileage": 51000
+                "mileage": 51000,
+                "type":"Good",
+                "mobile":"+88017815666",
+                "description":"This car is very good and it is very well used and this car is driven in very good roads and the roads are very nice and very unique so I can say that this card will be very good if you Buy",
+                "post": "Fri Nov 25 2022 12:14:04 GMT+0600 (Bangladesh Standard Time)"
             }
 
          ]
@@ -96,6 +122,7 @@
 
     "name":"BMW",
     "brand":"https://bhalogari-static.s3.amazonaws.com/media/bmw_new.svg",
+    "currentDate":9,
      "allcar":[
         {
             "id":1,
@@ -107,7 +134,11 @@
                 "modelYear":2011,
                 "usedTime":10,
                 "category":"Used",
-                "mileage": 52000
+                "mileage": 52000,
+                "type":"Good",
+                "mobile":"+88017815666",
+                "description":"The owner of this car bought this song as a hobby and drives it as a hobby and it is very nice and Unique.New model things are added in this song and the speed of this car is very great Iran can move very fast per second.",
+                "post":"Fri Nov 25 2022 12:14:04 GMT+0600 (Bangladesh Standard Time)"
         },
         {
             "id":2,
@@ -119,7 +150,11 @@
                 "modelYear":2016,
                 "usedTime":4,
                 "category":"Recondition",
-                "mileage": 30000
+                "mileage": 30000,
+                "type":"fair",
+                "mobile":"+880546516565",
+                "description":"This car is very good and it is very well used and this car is driven in very good roads and the roads are very nice and very unique so I can say that this card will be very good if you Buy",
+                "post": "Fri Nov 25 2022 12:14:04 GMT+0600 (Bangladesh Standard Time)"
         },
         {
             "id":3,
@@ -131,7 +166,11 @@
                 "modelYear":2005,
                 "usedTime":15,
                 "category":"Used",
-                "mileage": 25000
+                "mileage": 25000,
+                "type":"Excellent",
+                "mobile":"+88017815666",
+                "description":"This car has been meticulously sourced and very nicely reconditioned from its showroom perfectly with various finishes throughout the song and then sport driven.",
+                "post": "Fri Nov 25 2022 12:14:04 GMT+0600 (Bangladesh Standard Time)"
         }
         
      ]

@@ -177,7 +177,7 @@ const Header = () => {
       <MobileNav open={openNav}>
         {navList}
         <Button variant="gradient" size="sm" fullWidth className="mb-2">
-        <Link to='/allPlace'>
+        <Link to='/'>
                   <button className="w-full tracking-wider px-6 py-2.5 mt-6 text-sm text-white  duration-300 transform border bg-yellow-500 rounded-md lg:w-auto hover:border-white hover:bg-transparent focus:outline-none ">Book Now</button>
                   </Link> 
         </Button>
