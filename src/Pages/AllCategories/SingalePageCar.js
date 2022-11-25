@@ -3,7 +3,7 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 
 const SingalePageCar = ({car,setSelectCar}) => {
-    const {img,name,description,post, modelYear,usedTime,category,mileage,location,price,resalePrice} = car;
+    const {img,name,description,curentDate, modelYear,usedTime,category,mileage,location,price,resalePrice} = car;
     
     return (
         <section className="bg-[#F3F4F6]   shadow-sm">
@@ -16,9 +16,10 @@ const SingalePageCar = ({car,setSelectCar}) => {
             <img src={img} className="w-full h-96" alt="images" />
             </PhotoView>
           </PhotoProvider>
+          
                 
                 <div className="p-8 text-start sm:p-9 md:p-7 xl:p-9">
-                      <p className='text-black text-xs  '>{post}</p>
+                      <p className='text-black text-xs  '>{curentDate}</p>
                   <h3>
                     <div
                    

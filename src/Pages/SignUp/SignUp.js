@@ -2,7 +2,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { myContext } from '../../Context/AuthProvider';
 
@@ -10,7 +10,7 @@ import { myContext } from '../../Context/AuthProvider';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser , googleSignIn} = useContext(myContext);
+    const { createUser , googleSignIn , updateUser} = useContext(myContext);
     const [signUpError, setSignUPError] = useState('');
     const provider = new GoogleAuthProvider();
 
@@ -20,7 +20,14 @@ const SignUp = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                toast('User Created Successfully.')
+                toast('User Create Successfully')
+                const userInfo = {
+                     displayName: data.name
+                }
+                updateUser(userInfo)
+                .then(() => {})
+                .catch(err => console.log(err))
+              
               
                
             })

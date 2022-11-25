@@ -72,8 +72,8 @@ const Header = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to='/addService'  className="flex items-center hover:text-lg duration-300 transform hover:text-amber-200 font-bold ">
-       Add Service
+        <Link to='/dashboard'  className="flex items-center hover:text-lg duration-300 transform hover:text-amber-200 font-bold ">
+        Dashboard
         </Link>
       </Typography>
       <Typography
