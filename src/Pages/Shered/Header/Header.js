@@ -73,7 +73,7 @@ const Header = () => {
         className="p-1 font-normal"
       >
         <Link to='/dashboard'  className="flex items-center hover:text-lg duration-300 transform hover:text-amber-200 font-bold ">
-        Dashboard
+        dashboard
         </Link>
       </Typography>
       <Typography
@@ -138,7 +138,7 @@ const Header = () => {
           </div>
         <IconButton
           variant="text"
-          className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+          className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent -mt-6 lg:hidden"
           ripple={false}
           onClick={() => setOpenNav(!openNav)}
         >

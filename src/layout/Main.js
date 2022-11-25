@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import Footer from "../Pages/Shered/Header/Footer/Footer";
 import Header from "../Pages/Shered/Header/Header";
 import "../layout/Main.Module.css";
@@ -23,19 +23,19 @@ const Main = () => {
   return (
     <div>
       <div className="hidden lg:block">
-      <div className="flex justify-between py-5 bg-slate-200 px-16 " id="navbar">
-        <div className="text-3xl font-bold font-mono text-zinc-500">
+      <div className="flex justify-between py-2 bg-slate-200 px-16 " id="navbar">
+        <Link to='/' className="text-3xl font-bold font-mono text-zinc-500">
           Fast<span className="text-5xl font-mono text-red-600">Resale</span>
-        </div>
+        </Link>
         <div className="flex gap-6">
-          <div className="flex gap-3">
+          <div className="flex gap-3 mt-3">
             <MapPinIcon className="h-12 w-12 text-red-500" />
             <div>
               <h1 className="text-red-400 text-lg">Our Location</h1>
               <h3 className="text-lg text-black">25/7 Feni, Feni sodor</h3>
             </div>
           </div>
-          <div className="flex gap-3">
+          <div className="flex gap-3 mt-3">
             <EnvelopeIcon className="h-12 w-12 text-red-500" />
 
             <div>
@@ -44,7 +44,7 @@ const Main = () => {
             </div>
           </div>
           
-          <div className="flex gap-3">
+          <div className="flex gap-3 mt-3">
             <PhoneArrowUpRightIcon className="h-12 w-12 text-red-500 " />
 
             <div>

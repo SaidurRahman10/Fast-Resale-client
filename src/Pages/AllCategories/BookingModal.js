@@ -2,8 +2,11 @@ import React, { useContext } from "react";
 import { myContext } from "../../Context/AuthProvider";
 
 const BookingModal = ({ selectCar,setSelectCar }) => {
-    const {user} = useContext(myContext)
+    const {user, updateUser} = useContext(myContext)
+    
   const { name: carName , resalePrice } = selectCar;
+
+  console.log(user);
 
   const handleBooking = (event) =>{
     event.preventDefault()
