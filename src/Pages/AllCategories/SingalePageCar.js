@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
+import useTitle from '../../Hooks/Hooks';
 
 
 const SingalePageCar = ({car,setSelectCar}) => {
     const {img,name,description,curentDate, modelYear,usedTime,category,mileage,location,price,resalePrice} = car;
+    useTitle(`${name}`)
     
     return (
         <section className="bg-[#F3F4F6]   shadow-sm">
@@ -36,9 +38,9 @@ const SingalePageCar = ({car,setSelectCar}) => {
                    Category: {category} <br />
                    Mileage: {mileage} km <br />
                    PickUp Location: {location}
-                  <div className='font-thin text-lg font-semibold  '>Original Price: $<span className='line-through'> {price}</span> </div>
+                  <div className='font-thin text-lg font-semibold  '>Original Price: ৳<span className='line-through'> {price}</span> </div>
                   </p>
-                  <div className=' text-xl font-bold mb-5 '>Resale Price: $<span className=''> {resalePrice}</span> </div>
+                  <div className=' text-xl font-bold mb-5 '>Resale Price: ৳<span className=''> {resalePrice}</span> </div>
        
                  
                  

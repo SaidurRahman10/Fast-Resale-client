@@ -21,7 +21,7 @@ const Main = () => {
     prevScrollpos = currentScrollPos;
   };
   return (
-    <div>
+    <div className="lg:mt-24">
       <div className="hidden lg:block">
       <div className="flex justify-between py-2 bg-slate-200 px-16 " id="navbar">
         <Link to='/' className="text-3xl font-bold font-mono text-zinc-500">

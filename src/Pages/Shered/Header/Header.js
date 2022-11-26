@@ -93,8 +93,8 @@ const Header = () => {
   );
  
   return (
-    <Navbar className="mx-auto  py-2 px-4 lg:px-8 lg:py-4 bg-red-500 lg:mt-24 text-white">
-      <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
+    <Navbar className="mx-auto py-6 md:py-4 px-4 lg:px-8 lg:py-4 bg-red-500  text-white">
+      <div className="container mx-auto md:flex md:items-center md:justify-between text-blue-gray-900">
       
         <div className="hidden lg:block">{navList}</div>
         <div className="flex gap-6">
@@ -136,6 +136,10 @@ const Header = () => {
             </div>
            
           </div>
+          <div className='flex justify-between lg:hidden gap-24'>
+
+                <div>
+
         <IconButton
           variant="text"
           className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent -mt-6 lg:hidden"
@@ -173,6 +177,13 @@ const Header = () => {
             </svg>
           )}
         </IconButton>
+                </div>
+       <div>
+       <label htmlFor="dashboard-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mt-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            </label>
+       </div>
+          </div>
       </div>
       <MobileNav open={openNav}>
         {navList}
@@ -180,6 +191,7 @@ const Header = () => {
         <Link to='/'>
                   <button className="w-full tracking-wider px-6 py-2.5 mt-6 text-sm text-white  duration-300 transform border bg-yellow-500 rounded-md lg:w-auto hover:border-white hover:bg-transparent focus:outline-none ">Book Now</button>
                   </Link> 
+                  
         </Button>
       </MobileNav>
     </Navbar>

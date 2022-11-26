@@ -1,15 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import errorBanner from '../../img/404.png'
 
 const ErrorPage = () => {
     return (
-        <div>
+      <div
+      className="hero min-h-screen"
+      style={{ backgroundImage: `url(${errorBanner})` }}
+    >
+      <div className="hero-overlay "></div>
            
-<section className="bg-blue-400  py-[220px]  ">
+<section className="bg-transparent  py-[220px]  ">
    <div className="container">
       <div className="flex ">
          <div className="w-full px-4">
-            <div className="mx-auto max-w-[400px] text-center">
+            <div className="mx-auto max-w-[500px] text-center">
                <h2
                   className="
                   font-bold
@@ -21,15 +26,17 @@ const ErrorPage = () => {
                   leading-none
                   "
                   >
-                  404
+                  404 !
                </h2>
                <h4
                   className="text-white font-semibold   mb-3"
                   >
                   Oops! That page can’t be found
                </h4>
-               <p className="text-lg text-white mb-8">
-                  The page you are looking for it maybe deleted
+               <p className="text-xl text-white mb-8 font-bold">
+                 The page you are looking for it maybe not created .  <br />
+                 <span className='text-5xl '>OR</span> <br />
+                  The page you are looking for it maybe Deleted  !!!
                </p>
              <Link className="
                   text-base
