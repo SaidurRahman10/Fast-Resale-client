@@ -3,6 +3,7 @@ import { Link, Outlet } from 'react-router-dom';
 import { myContext } from '../Context/AuthProvider';
 import useAdmin from '../Hooks/useAdmin';
 import Header from '../Pages/Shered/Header/Header';
+import bannerProduct from '../img/addProduct.png'
 
 const DashboardLayout = () => {
   const {user} = useContext(myContext)
@@ -12,8 +13,11 @@ const DashboardLayout = () => {
           <Header></Header>
           <div className="drawer drawer-mobile bg-slate-100">
   <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
-  <div className="drawer-content flex mx-10">
+  <div  style={{ backgroundImage: `url(${bannerProduct})` }} className="drawer-content flex hero-overlay ">
+  <div className="hero-overlay ">
+
     <Outlet></Outlet>
+  </div>
    
   
   </div> 
