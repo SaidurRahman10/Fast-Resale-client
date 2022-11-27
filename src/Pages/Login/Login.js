@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { myContext } from '../../Context/AuthProvider';
 import useTitle from '../../Hooks/Hooks';
+import useToken from '../../Hooks/useToken';
 
 
 
@@ -14,13 +15,16 @@ const Login = () => {
     const {  googleSignIn,logIn } = useContext(myContext);
     const [loginError, setLoginError] = useState('');
     const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = useToken(loginUserEmail)
     const provider= new GoogleAuthProvider();
     
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || '/';
 
-    
+    if(token){
+        navigate(from, {replace:true})
+    }
 
     const handleLogin = data => {
         console.log(data);
@@ -29,7 +33,6 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate(from,{replace:true})
                 setLoginUserEmail(data.email);
                 toast.success('Login Successfully Completed')
             })

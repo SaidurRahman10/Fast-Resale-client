@@ -35,7 +35,7 @@ const ErrorPage = () => {
                </h4>
                <p className="text-xl text-white mb-8 font-bold">
                  The page you are looking for it maybe not created .  <br />
-                 <span className='text-5xl '>OR</span> <br />
+                 <span className='text-3xl '>OR</span> <br />
                   The page you are looking for it maybe Deleted  !!!
                </p>
              <Link className="

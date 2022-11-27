@@ -6,8 +6,10 @@ import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { myContext } from "../../Context/AuthProvider";
 import useTitle from "../../Hooks/Hooks";
+import useToken from "../../Hooks/useToken";
 
 const SignUp = () => {
+  useTitle('SignUp')
   const {
     register,
     handleSubmit,
@@ -15,12 +17,17 @@ const SignUp = () => {
   } = useForm();
   const { createUser, googleSignIn, updateUser } = useContext(myContext);
   const [signUpError, setSignUPError] = useState("");
+  const [createdUserEmail, setCreatedUserEmail] = useState('')
+  const [token] = useToken(createdUserEmail)
+  const navigate = useNavigate();
 
   const provider = new GoogleAuthProvider();
 
-  const navigate = useNavigate();
+  if(token){
+    navigate('/')
+  }
 
-  useTitle('SignUp')
+
   const handleSignUp = (data) => {
     // console.log(data?.name,"T am here");
 
@@ -58,11 +65,12 @@ const SignUp = () => {
     .then(res => res.json())
     .then(data => {
       console.log(data)
-      navigate('/')
+      setCreatedUserEmail(email)
+   
     })
 
   }
-
+  
 
   const handelGoogleSignIn = () => {
     googleSignIn(provider)
