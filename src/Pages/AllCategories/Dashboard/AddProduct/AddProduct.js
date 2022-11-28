@@ -92,8 +92,9 @@ const AddProduct = () => {
       <h2 className="text-4xl text-start text-white">Add Product</h2>
       <form
         onSubmit={handleSubmit(handleAddProduct)}
-        className="grid grid-cols-1 md:grid-cols-2"
+        className=""
       >
+        <div className="grid md:grid-cols-2 grid-cols-1">
         <div className="form-control w-full max-w-xs">
           <label className="label">
             {" "}
@@ -111,6 +112,7 @@ const AddProduct = () => {
             <p className="text-red-500">{errors.sellerName.message}</p>
           )}
         </div>
+        
         <div className="form-control w-full max-w-xs">
           <label className="label">
             {" "}
@@ -261,7 +263,7 @@ const AddProduct = () => {
           />
           {errors.img && <p className="text-red-500">{errors.img.message}</p>}
         </div>
-
+</div>
         <div className="col-span-2 text-center mt-8">
           <input
             className="btn bg-red-500 border-0 mt-4  w-96 "
