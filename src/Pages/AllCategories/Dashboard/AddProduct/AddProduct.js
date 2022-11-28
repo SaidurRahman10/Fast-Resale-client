@@ -2,83 +2,82 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import Loading from "../../../Loading/Loading";
 
 const AddProduct = () => {
+  const navigate = useNavigate();
   const imageHostKey = process.env.REACT_APP_imgbb_KEY;
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  
 
-  const handleAddProduct = data => {
+  const handleAddProduct = (data) => {
     const img = data.img[0];
     const formData = new FormData();
-    formData.append('image', img);
+    formData.append("image", img);
 
-    const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
+    const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
     fetch(url, {
-        method: 'POST',
-        body: formData
+      method: "POST",
+      body: formData,
     })
-        .then(res => res.json())
-        .then(imgData => {
-            if (imgData.success) {
-                const product = {
-                    name: data.name,
-                    sellerName: data.sellerName,
-                    categorie: data.categorie,
-                    location: data.location,
-                    mobile: data.mobile,
-                    price: data.originalPrice,
-                    resalePrice: data.resalePrice,
-                    usedTime: data.yearOfUse,
-                    img: imgData.data.url
-                }
+      .then((res) => res.json())
+      .then((imgData) => {
+        if (imgData.success) {
+          const product = {
+            name: data.name,
+            sellerName: data.sellerName,
+            categorie: data.categorie,
+            location: data.location,
+            mobile: data.mobile,
+            price: data.originalPrice,
+            resalePrice: data.resalePrice,
+            usedTime: data.yearOfUse,
+            img: imgData.data.url,
+            category:data.category,
+          };
 
-                //save product 
+          //save product
 
-                fetch('http://localhost:5000/allcars', {
-                    method: 'PUT',
-                    headers: {
-                        'content-type': 'application/json',
-                        authorization: `bearer ${localStorage.getItem('accessToken')}`
-                    },
-                    body: JSON.stringify(product)
-                })
-                    .then(res => res.json())
-                    .then(result => {
-                        toast.success('Product Added')
-                        console.log(result);
-
-                        
-                    })
-                    fetch('http://localhost:5000/product', {
-                        method: 'POST',
-                        headers: {
-                            'content-type': 'application/json',
-                            authorization: `bearer ${localStorage.getItem('accessToken')}`
-                        },
-                        body: JSON.stringify(product)
-                    })
-                        .then(res => res.json())
-                        .then(result => {
-                            console.log(result);
-                        })
-
-
-           
-                  }
-
-        })
-}
+          fetch("https://frs-server-b68d.vercel.app/allcars", {
+            method: "PUT",
+            headers: {
+              "content-type": "application/json",
+              authorization: `bearer ${localStorage.getItem("accessToken")}`,
+            },
+            body: JSON.stringify(product),
+          })
+            .then((res) => res.json())
+            .then((result) => {
+              toast.success("Product Added");
+              console.log(result);
+            });
+          fetch("https://frs-server-b68d.vercel.app/product", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              authorization: `bearer ${localStorage.getItem("accessToken")}`,
+            },
+            body: JSON.stringify(product),
+          })
+            .then((res) => res.json())
+            .then((result) => {
+              console.log(result);
+              navigate("/dashboard/myproduct");
+            });
+        }
+      });
+  };
 
   const { data: categories, isLoading } = useQuery({
     queryKey: ["category"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/allCarsSpecialty");
+      const res = await fetch(
+        "https://frs-server-b68d.vercel.app/allCarsSpecialty"
+      );
       const data = await res.json();
       return data;
     },
@@ -115,6 +114,23 @@ const AddProduct = () => {
         <div className="form-control w-full max-w-xs">
           <label className="label">
             {" "}
+            <span className="label-text text-white">Condition</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Enter Your Name"
+            {...register("category", {
+              required: "Name is Required",
+            })}
+            className="input input-bordered w-full max-w-xs"
+          />
+          {errors.category && (
+            <p className="text-red-500">{errors.category.message}</p>
+          )}
+        </div>
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            {" "}
             <span className="label-text text-white">Product Name</span>
           </label>
           <input
@@ -137,7 +153,9 @@ const AddProduct = () => {
             className="input input-bordered w-full max-w-xs"
           >
             {categories?.map((categorie) => (
-              <option key={categorie._id} value={categorie._id}>{categorie.name}</option>
+              <option key={categorie._id} value={categorie._id}>
+                {categorie.name}
+              </option>
             ))}
           </select>
         </div>
@@ -229,7 +247,7 @@ const AddProduct = () => {
             <p className="text-red-500">{errors.mobile.message}</p>
           )}
         </div>
-        <div className="form-control w-full max-w-xs">
+        <div className="form-control w-full max-w-xs ">
           <label className="label">
             {" "}
             <span className="label-text text-white">Image</span>
@@ -239,7 +257,7 @@ const AddProduct = () => {
             {...register("img", {
               required: "Image is Required",
             })}
-            className="input w-full max-w-xs"
+            className="input w-full max-w-xs bg-transparent text-white"
           />
           {errors.img && <p className="text-red-500">{errors.img.message}</p>}
         </div>

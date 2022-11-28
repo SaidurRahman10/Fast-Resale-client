@@ -7,7 +7,7 @@ import Loading from "../../../Loading/Loading";
 const MyOrders = () => {
   const { user } = useContext(myContext);
 
-  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  const url = `https://frs-server-b68d.vercel.app/bookings?email=${user?.email}`;
 
   const {
     data: bookings = [],
@@ -29,7 +29,7 @@ const MyOrders = () => {
     const agree = window.confirm(`Are you sure you want to this Item`);
 
     if (agree) {
-      fetch(`http://localhost:5000/bookings/${bookings}`, {
+      fetch(`https://frs-server-b68d.vercel.app/bookings/${bookings}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

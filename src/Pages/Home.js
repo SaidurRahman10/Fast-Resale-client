@@ -14,7 +14,7 @@ const Home = () => {
 
   //                                                         const {allCarss = []} = useQuery({
   //                                                         queryKey:['allCars'],
-  //                                                         queryFn:()=> fetch('http://localhost:5000/allCars')
+  //                                                         queryFn:()=> fetch('https://frs-server-b68d.vercel.app/allCars')
   //                                                         .then(res => res.json())
   //                                                         })
 

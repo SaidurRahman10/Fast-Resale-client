@@ -30,9 +30,11 @@ const HeroSection = () => {
           </div>
           <br />
           <div className="flex gap-5 mt-9">
-            <button className="text-white bg-red-600 px-10 py-3 rounded-md hover:text-red-600 hover:bg-transparent font-bold hover:border hover:border-red-600 duration-300 transition transform ease-in-out">
-              ORDER NOW
-            </button>
+            <Link to="/allcar/63808e0859c9ffedc93299f9">
+              <button className="text-white bg-red-600 px-10 py-3 rounded-md hover:text-red-600 hover:bg-transparent font-bold hover:border hover:border-red-600 duration-300 transition transform ease-in-out">
+                ORDER NOW
+              </button>
+            </Link>
             <Link to="/login">
               <button className="text-red bg-transparent duration-300 transition text-red-600 px-16 py-3 rounded-md hover:text-white hover:bg-red-600 font-bold border border-red-600">
                 Log In

@@ -56,16 +56,7 @@ const Header = () => {
     
     { user?.uid &&
       <>
-       <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <Link to=''  className="flex items-center hover:text-lg duration-300 transform hover:text-amber-200 font-bold ">
-       My Review
-        </Link>
-      </Typography>
+       
       <Typography
         as="li"
         variant="small"
@@ -188,7 +179,7 @@ const Header = () => {
       <MobileNav open={openNav}>
         {navList}
         <Button variant="gradient" size="sm" fullWidth className="mb-2">
-        <Link to='/'>
+        <Link to='/allcar/63808e0859c9ffedc93299f9'>
                   <button className="w-full tracking-wider px-6 py-2.5 mt-6 text-sm text-white  duration-300 transform border bg-yellow-500 rounded-md lg:w-auto hover:border-white hover:bg-transparent focus:outline-none ">Book Now</button>
                   </Link> 
                   

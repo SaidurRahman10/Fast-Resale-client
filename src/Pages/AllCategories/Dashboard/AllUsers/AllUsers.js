@@ -6,14 +6,14 @@ const AllUsers = () => {
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users");
+      const res = await fetch("https://frs-server-b68d.vercel.app/users");
       const data = await res.json();
       return data;
     },
   });
 
   const handleMakeAdmin = (id) => {
-    fetch(`http://localhost:5000/users/admin/${id}`, {
+    fetch(`https://frs-server-b68d.vercel.app/users/admin/${id}`, {
       method: "PUT",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -28,7 +28,7 @@ const AllUsers = () => {
       });
   };
   const handleDeleteUser = (user) => {
-    fetch(`http://localhost:5000/users/${user}`, {
+    fetch(`https://frs-server-b68d.vercel.app/users/${user}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -66,9 +66,7 @@ const AllUsers = () => {
                 <th className="lg:px-6">{i + 1}</th>
                 <td className="lg:px-6">{user.name}</td>
                 <td className="lg:px-6">{user.email}</td>
-                <td className="font-semibold  lg:px-6">
-                  {user?.role}
-                </td>
+                <td className="font-semibold  lg:px-6">{user?.role}</td>
                 <td className="lg:px-6">
                   {user?.role !== "admin" && (
                     <button

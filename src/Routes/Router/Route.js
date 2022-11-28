@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/allCars"),
+        loader: () => fetch("https://frs-server-b68d.vercel.app/allCars"),
       },
       { path: "/signup", element: <SignUp></SignUp> },
       { path: "/login", element: <Login></Login> },
@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/allCars/${params.id}`),
+          fetch(`https://frs-server-b68d.vercel.app/allCars/${params.id}`),
       },
     ],
   },
