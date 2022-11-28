@@ -1,46 +1,53 @@
-import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
-import { PhotoProvider, PhotoView } from 'react-photo-view';
-
-
+import { useQuery } from "@tanstack/react-query";
+import React, { useContext } from "react";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import Loading from "../../../Loading/Loading";
 
 const MyProduct = () => {
-    const { data: product = [], refetch } = useQuery({
-        queryKey: ['product'],
-        queryFn: async () => {
-            const res = await fetch('http://localhost:5000/product')
-            const data = await res.json();
-            return data
-        }
-    })
+  const { data: product = [], refetch , isLoading } = useQuery({
+    queryKey: ["product"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/product");
+      const data = await res.json();
+      return data;
+    },
+  });
+  if(isLoading){
+    return <Loading></Loading>
+  }
 
-    
-    
-    return (
-       
-       
-     <div>
-        <div className='lg:w-4/5 lg:mx-auto my-16'>
-            <h3 className="text-4xl text-center font-bold "> Product</h3>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:mx-12 mb-28 mt-16'>
-                {
-                    product.map((categoriy, i) => <div key={i} className="card card-compact w-96 bg-base-100 shadow-xl">
-                        <figure><img src={categoriy.img} alt="electric" /></figure>
-                        <div className="card-body">
-                            <h2 className="card-title font-bold">{categoriy.name}</h2>
-                            {/* <p className="card-title">Seller Name: {categoriy.sellerName}</p>
-                            <p className="card-title">Location: {categoriy.location}</p>
-                            <p className="card-title">Original Price: ${categoriy.originalPrice}</p>
-                            <p className="card-title">Re-sell Price: ${categoriy.resalePrice}</p> */}
-                            
-                        </div>
-                    </div>
-                    )
-                }
+  return (
+    <div className="mx-10 my-10">
+     
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        {product.map((categoriy, i) => (
+          <div>
+            <div className="card w-96 bg-base-100 shadow-xl">
+              <figure>
+                <img className="w-full h-80" src={categoriy.img} alt="Shoes" />
+              </figure>
+              <div className="card-body">
+                <h2 className="card-title">
+                  {categoriy.name}
+                  <div className="badge badge-secondary">NEW</div>
+                </h2>
+                <p className="text-slate-500 mb-3 text-base leading-relaxed text-start">
+                   Model: {categoriy.sellerName} <br />
+                   Used Time: {categoriy.usedTime} Years<br />
+                  
+                 
+                   PickUp Location: {categoriy.location}
+                  <div className='font-thin text-lg font-semibold  '>Original Price: ৳<span className='line-through'> {categoriy.price}</span> </div>
+                <h1 className="mt-2 font-bold text-2xl text-black"> Resale Price:  ৳ {categoriy.resalePrice}</h1>
+                  </p>
+               
+              </div>
             </div>
-        </div>
-     </div>
-    );
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default MyProduct;
