@@ -1,45 +1,65 @@
-import { useQuery } from '@tanstack/react-query';
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import Loading from '../../../Loading/Loading';
-
+import { useQuery } from "@tanstack/react-query";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import Loading from "../../../Loading/Loading";
 
 const AddProduct = () => {
-    const imageHostKey = process.env.REACT_APP_imgbb_key;
-    const { register, handleSubmit, formState: { errors } } = useForm();
+  const imageHostKey = process.env.REACT_APP_imgbb_KEY;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  
 
-    const handleAddProduct = data => {
-        console.log(data.img[0]);
-        
-        const img = data.img[0];
-        const formData = new FormData();
-        formData.append('img', img);
-        const url =` https://api.imgbb.com/1/upload?key=${imageHostKey}`
-        fetch(url, {
-            method: 'POST',
-            body: formData
-        })
-            .then(res => res.json())
-            .then(imgData => {
-                if (imgData.success) {
-                    // imgData.data.url
-                    const product = {
-                        name: data.name,
-                        location: data.location,
-                        mobile: data.mobile,
-                        originalPrice: data.originalPrice,
-                        resalePrice: data.resalePrice,
-                        yearOfUse: data.yearOfUse,
-                        img: imgData.data.url
-                    }
-                    console.log(product)
-                    //save product 
+  const handleAddProduct = data => {
+    const img = data.img[0];
+    const formData = new FormData();
+    formData.append('image', img);
 
-                    fetch('http://localhost:5000/allCars', {
+    const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
+    fetch(url, {
+        method: 'POST',
+        body: formData
+    })
+        .then(res => res.json())
+        .then(imgData => {
+            if (imgData.success) {
+                const product = {
+                    name: data.name,
+                    sellerName: data.sellerName,
+                    categorie: data.categorie,
+                    location: data.location,
+                    mobile: data.mobile,
+                    price: data.originalPrice,
+                    resalePrice: data.resalePrice,
+                    usedTime: data.yearOfUse,
+                    img: imgData.data.url
+                }
+
+                //save product 
+
+                fetch('http://localhost:5000/allcars', {
+                    method: 'PUT',
+                    headers: {
+                        'content-type': 'application/json',
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    },
+                    body: JSON.stringify(product)
+                })
+                    .then(res => res.json())
+                    .then(result => {
+                        toast.success('Product Added')
+                        console.log(result);
+
+                        
+                    })
+                    fetch('http://localhost:5000/product', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
-                            authorization:` bearer ${localStorage.getItem('accessToken')}`
+                            authorization: `bearer ${localStorage.getItem('accessToken')}`
                         },
                         body: JSON.stringify(product)
                     })
@@ -47,106 +67,193 @@ const AddProduct = () => {
                         .then(result => {
                             console.log(result);
                         })
-                }
-
-            })
-    }
-    const { data: categories , isLoading} = useQuery({
-        queryKey: ['category'],
-        queryFn: async () => {
-            const res = await fetch('http://localhost:5000/allCarsSpecialty');
-            const data = await res.json();
-            return data;
-        }
-    })
-
-    if(isLoading){
-        return <Loading></Loading>
-    }
 
 
-    return (
-        <div  className='w-5/6 mx-auto p-7  '>
            
-            <h2 className="text-4xl text-start text-white">Add Product</h2>
-            <form onSubmit={handleSubmit(handleAddProduct)} className="grid grid-cols-1 md:grid-cols-2">
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"> <span className="label-text text-white">Name</span></label>
-                    <input type="text" placeholder='Enter Your Name' {...register("sellerName", {
-                        required: "Name is Required"
-                    })} className="input input-bordered w-full max-w-xs" />
-                    {errors.sellerName && <p className='text-red-500'>{errors.sellerName.message}</p>}
-                </div>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"> <span className="label-text text-white">Product Name</span></label>
-                    <input type="text" placeholder='Enter Product Name' {...register("name", {
-                        required: "Name is Required"
-                    })} className="input input-bordered w-full max-w-xs" />
-                    {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
-                </div>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"> <span className="label-text text-white">Select Categorie</span></label>
-                    <select {...register('categorie')}
-                        className="input input-bordered w-full max-w-xs">
-                        <option selected>Select a Category</option>
-                        {
-                            categories?.map(categorie => <option
-                                key={categorie._id}
-                            >{categorie.name}</option>)
-                        }
-                    </select>
-                </div>
+                  }
 
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"> <span className="label-text text-white">Location</span></label>
-                    <input type="text" placeholder='Enter Your Location' {...register("location", {
-                        required: "location is Required"
-                    })} className="input input-bordered w-full max-w-xs" />
-                    {errors.location && <p className='text-red-500'>{errors.location.message}</p>}
-                </div>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"> <span className="label-text text-white">Original Price</span></label>
-                    <input type="text" placeholder='Enter Original Price' {...register("originalPrice", {
-                        required: "Price is Required"
-                    })} className="input input-bordered w-full max-w-xs" />
-                    {errors.originalPrice && <p className='text-red-500'>{errors.originalPrice.message}</p>}
-                </div>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"> <span className="label-text text-white">Re-sell Price</span></label>
-                    <input type="text" placeholder='Enter Re-sell Price' {...register("resalePrice", {
-                        required: "Price is Required"
-                    })} className="input input-bordered w-full max-w-xs" />
-                    {errors.resalePrice && <p className='text-red-500'>{errors.resalePrice.message}</p>}
-                </div>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"> <span className="label-text text-white">How many year you use it?</span></label>
-                    <input type="text" placeholder='Enter Uses years' {...register("yearOfUse", {
-                        required: "year is Required"
-                    })} className="input input-bordered w-full max-w-xs" />
-                    {errors.yearOfUse && <p className='text-red-500'>{errors.yearOfUse.message}</p>}
-                </div>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"> <span className="label-text text-white">Mobile</span></label>
-                    <input type="text" placeholder='Enter Your Mobile Number' {...register("mobile", {
-                        required: "Name is Required"
-                    })} className="input input-bordered w-full max-w-xs" />
-                    {errors.mobile && <p className='text-red-500'>{errors.mobile.message}</p>}
-                </div>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"> <span className="label-text text-white">Image</span></label>
-                    <input type="file" {...register("img", {
-                        required: "Image is Required"
-                    })} className="input w-full max-w-xs" />
-                    {errors.img && <p className='text-red-500'>{errors.img.message}</p>}
-                </div>
+        })
+}
 
+  const { data: categories, isLoading } = useQuery({
+    queryKey: ["category"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/allCarsSpecialty");
+      const data = await res.json();
+      return data;
+    },
+  });
 
-                <div className='col-span-2 text-center mt-8'>
-                    <input className='btn bg-red-500 border-0 mt-4  w-96 ' value="Add Item" type="submit" />
-                </div>
-            </form>
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+
+  return (
+    <div className="w-5/6 mx-auto p-7  ">
+      <h2 className="text-4xl text-start text-white">Add Product</h2>
+      <form
+        onSubmit={handleSubmit(handleAddProduct)}
+        className="grid grid-cols-1 md:grid-cols-2"
+      >
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            {" "}
+            <span className="label-text text-white">Name</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Enter Your Name"
+            {...register("sellerName", {
+              required: "Name is Required",
+            })}
+            className="input input-bordered w-full max-w-xs"
+          />
+          {errors.sellerName && (
+            <p className="text-red-500">{errors.sellerName.message}</p>
+          )}
         </div>
-    );
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            {" "}
+            <span className="label-text text-white">Product Name</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Enter Product Name"
+            {...register("name", {
+              required: "Name is Required",
+            })}
+            className="input input-bordered w-full max-w-xs"
+          />
+          {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+        </div>
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            {" "}
+            <span className="label-text text-white">Select Categorie</span>
+          </label>
+          <select
+            {...register("categorie")}
+            className="input input-bordered w-full max-w-xs"
+          >
+            {categories?.map((categorie) => (
+              <option key={categorie._id} value={categorie._id}>{categorie.name}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            {" "}
+            <span className="label-text text-white">Location</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Enter Your Location"
+            {...register("location", {
+              required: "location is Required",
+            })}
+            className="input input-bordered w-full max-w-xs"
+          />
+          {errors.location && (
+            <p className="text-red-500">{errors.location.message}</p>
+          )}
+        </div>
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            {" "}
+            <span className="label-text text-white">Original Price</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Enter Original Price"
+            {...register("originalPrice", {
+              required: "Price is Required",
+            })}
+            className="input input-bordered w-full max-w-xs"
+          />
+          {errors.originalPrice && (
+            <p className="text-red-500">{errors.originalPrice.message}</p>
+          )}
+        </div>
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            {" "}
+            <span className="label-text text-white">Re-sell Price</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Enter Re-sell Price"
+            {...register("resalePrice", {
+              required: "Price is Required",
+            })}
+            className="input input-bordered w-full max-w-xs"
+          />
+          {errors.resalePrice && (
+            <p className="text-red-500">{errors.resalePrice.message}</p>
+          )}
+        </div>
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            {" "}
+            <span className="label-text text-white">
+              How many year you use it?
+            </span>
+          </label>
+          <input
+            type="text"
+            placeholder="Enter Uses years"
+            {...register("yearOfUse", {
+              required: "year is Required",
+            })}
+            className="input input-bordered w-full max-w-xs"
+          />
+          {errors.yearOfUse && (
+            <p className="text-red-500">{errors.yearOfUse.message}</p>
+          )}
+        </div>
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            {" "}
+            <span className="label-text text-white">Mobile</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Enter Your Mobile Number"
+            {...register("mobile", {
+              required: "Name is Required",
+            })}
+            className="input input-bordered w-full max-w-xs"
+          />
+          {errors.mobile && (
+            <p className="text-red-500">{errors.mobile.message}</p>
+          )}
+        </div>
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            {" "}
+            <span className="label-text text-white">Image</span>
+          </label>
+          <input
+            type="file"
+            {...register("img", {
+              required: "Image is Required",
+            })}
+            className="input w-full max-w-xs"
+          />
+          {errors.img && <p className="text-red-500">{errors.img.message}</p>}
+        </div>
+
+        <div className="col-span-2 text-center mt-8">
+          <input
+            className="btn bg-red-500 border-0 mt-4  w-96 "
+            value="Add Item"
+            type="submit"
+          />
+        </div>
+      </form>
+    </div>
+  );
 };
 
 export default AddProduct;

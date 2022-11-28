@@ -9,7 +9,7 @@ import useTitle from "../../Hooks/Hooks";
 import useToken from "../../Hooks/useToken";
 
 const SignUp = () => {
-  useTitle('SignUp')
+  useTitle("SignUp");
   const {
     register,
     handleSubmit,
@@ -17,68 +17,48 @@ const SignUp = () => {
   } = useForm();
   const { createUser, googleSignIn, updateUser } = useContext(myContext);
   const [signUpError, setSignUPError] = useState("");
-  const [createdUserEmail, setCreatedUserEmail] = useState('')
-  const [token] = useToken(createdUserEmail)
+  const [createdUserEmail, setCreatedUserEmail] = useState("");
+  const [token] = useToken(createdUserEmail);
   const navigate = useNavigate();
 
   const provider = new GoogleAuthProvider();
 
-  if(token){
-    navigate('/')
+  if (token) {
+    navigate("/");
   }
-
 
   const handleSignUp = (data) => {
     // console.log(data?.name,"T am here");
 
-    setSignUPError('');
+    setSignUPError("");
     createUser(data.email, data.password)
-        .then(result => {
-            const user = result.user;
-            console.log(user);
-            toast.success('User Created Successfully.')
-            const userInfo = {
-                displayName: data.name
-            }
-            updateUser(userInfo)
-                .then(() => {
-                saveUser(data.name, data.email)
-                })
-                .catch(err => console.log(err));
-        })
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success("User Created Successfully.");
+        const userInfo = {
+          displayName: data.name,
+        };
+        updateUser(userInfo)
+          .then(() => {
+            saveUser(data.name, data.email, data.role);
+          })
+          .catch((err) => console.log(err));
+      })
       .catch((error) => {
         console.log(error);
         setSignUPError(error.message);
       });
-
   };
-
-  const saveUser = (name, email) =>{
-    const user ={name,email}
-    fetch('http://localhost:5000/users',{
-      method:'POST',
-      headers: {
-        'content-type':'application/json'
-      },
-      body:JSON.stringify(user)
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      setCreatedUserEmail(email)
-   
-    })
-
-  }
-  
 
   const handelGoogleSignIn = () => {
     googleSignIn(provider)
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate('/')
+        navigate("/");
         toast.success("User Create Successfully");
+        saveUser(user?.displayName, user?.email);
       })
       .catch((error) => {
         console.error(error);
@@ -86,6 +66,21 @@ const SignUp = () => {
       });
   };
 
+  const saveUser = (name, email, role) => {
+    const user = { name, email, role };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setCreatedUserEmail(email);
+      });
+  };
   return (
     <div className="h-[800px] flex justify-center items-center ">
       <div className="w-96 p-7 shadow-2xl rounded-lg">
@@ -147,6 +142,20 @@ const SignUp = () => {
             {errors.password && (
               <p className="text-red-500">{errors.password.message}</p>
             )}
+          </div>
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              {" "}
+              <span className="label-text">Role</span>
+            </label>
+
+            <select
+              {...register("role")}
+              className="input input-bordered w-full max-w-xs"
+            >
+              <option defaultValue="Buyer">Buyer</option>
+              <option value="Seller">Seller</option>
+            </select>
           </div>
           <input
             className="btn border-0 hover:bg-transparent hover:text-red-600 hover:border hover:border-red-600 bg-red-600 w-full mt-4"

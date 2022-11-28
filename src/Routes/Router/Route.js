@@ -38,35 +38,40 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/allCars/${params.id}`),
       },
-      
     ],
   },
   {
-      path:'/dashboard',element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,children:[
-        {
-          path:'/dashboard',
-          element:<MyOrders></MyOrders>
-
-        },
-        {
-          path:'/dashboard/allusers',
-          element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
-
-        },
-        {
-          path:'/dashboard/addproduct',
-          element:<AddProduct></AddProduct>
-
-        },
-        {
-          path:'/dashboard/myproduct',
-          element:<MyProduct></MyProduct>
-
-        }
-      ]
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "/dashboard",
+        element: <MyOrders></MyOrders>,
+      },
+      {
+        path: "/dashboard/allusers",
+        element: (
+          <AdminRoute>
+            <AllUsers></AllUsers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/addproduct",
+        element: <AddProduct></AddProduct>,
+      },
+      {
+        path: "/dashboard/myproduct",
+        element: <MyProduct></MyProduct>,
+      },
+    ],
   },
   {
-    path:"*",
-    element:<ErrorPage></ErrorPage>
-  }
+    path: "*",
+    element: <ErrorPage></ErrorPage>,
+  },
 ]);

@@ -62,7 +62,7 @@ const Header = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to='myreview'  className="flex items-center hover:text-lg duration-300 transform hover:text-amber-200 font-bold ">
+        <Link to=''  className="flex items-center hover:text-lg duration-300 transform hover:text-amber-200 font-bold ">
        My Review
         </Link>
       </Typography>
@@ -73,7 +73,7 @@ const Header = () => {
         className="p-1 font-normal"
       >
         <Link to='/dashboard'  className="flex items-center hover:text-lg duration-300 transform hover:text-amber-200 font-bold ">
-        dashboard
+        Dashboard
         </Link>
       </Typography>
       <Typography
